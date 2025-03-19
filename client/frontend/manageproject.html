@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<!-- 
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only. -->
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IAI Admin - Manage Project</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  
+    <script src="js/jsvue.js"></script>
+  <script src="js/axios.min.js"></script>
+  <script src="js/vue-cookies.js"></script>
+  <link rel="stylesheet" href="css/bootstrap-table.min.css">
+  
+</head>
+<body class="hold-transition sidebar-mini">
+	
+<div class="wrapper" id="HrportalProject">
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="dashboard.html" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Manage Project</a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+     <ul class="navbar-nav ml-auto" style="margin-top: -1.5%;">
+      <!-- Navbar Search -->
+
+
+  <!-- Notifications Dropdown Menu -->
+      
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="" class="brand-link">
+      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Projects</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+
+
+
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+	  
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+      
+         
+         <li class="nav-item">
+            <a href="manageproject.html" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>Manage Project</p>
+            </a>
+          </li> 
+          
+          <li class="nav-item">
+            <a href="projectadd.html" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>Project Add</p>
+            </a>
+          </li>   
+		  <li class="nav-item">
+            <a href="projectedit.html" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>Project Edit</p>
+            </a>
+          </li>  
+		  <li class="nav-item">
+            <a href="projectdetail.html" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>Project Detail</p>
+            </a>
+          </li>
+         
+          
+        
+          
+          
+         
+          </li>
+        </ul>
+      </nav>
+	  
+	  
+
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h5>Manage Project</h5>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+              <li class="breadcrumb-item active">Manage Project</li>
+            </ol>
+          </div>
+
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+				<!-- /.card-header -->
+				<!--	<div class="card-body">
+						<button type="button" class="btn btn-primary" @click="showaddcontact();">
+						Add Contact
+						</button>
+					</div>-->
+				<!-- /.card-body -->
+				</div>
+
+			</div>
+		</div>
+        <div class="row">
+          <div class="col-12">
+		  <!-- /.card -->
+
+            <div class="card">
+              <!-- /.card-header -->
+              <div class="card-body">
+					<bootstrap-table :columns="projectcolumns" data-show-export="true"
+					data-pagination="true"
+					data-pagination-v-align="both"
+
+					:data="projectdata" :options="projectoptions">
+					</bootstrap-table>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div> 
+ <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+      <h5>Title</h5>
+      <p>Sidebar content</p>
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2023-2024 <a href="https://iai.com">IAI</a>.</strong> All rights reserved.
+  </footer>
+  
+    
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+	   
+        </div>
+        <!-- /.modal-dialog -->
+      </div>  
+	     <!-- /.Permission Edit Modal -->  
+</div>
+
+
+
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+
+<!-- DataTables  & Plugins -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+ <script src="js/bootstrap-table.min.js"></script>
+  <script src="js/bootstrap-table-vue.min.js"></script>
+
+
+
+<script>
+
+var app = new Vue({
+	components: {
+				'BootstrapTable': BootstrapTable
+			},
+	el: '#HrportalProject',
+	
+	data: {	
+			
+			project_name:'',
+			lastname:'',
+			institution:'',
+			phone:'',
+			email:'',
+			country:'',
+			message:'',
+			userfullname:'',
+			projectedittoken:'',
+
+			
+			projectcolumns: [
+					
+			{
+				title: ' ',field: 'project_id', sortable: true
+			},
+			{
+				title: 'project_name',field: 'project_name', sortable: true
+			},
+			{
+				title: 'status',field: 'status', sortable: true
+			},
+			{
+				title: 'Assignee',field: 'assignee', sortable: true
+			},
+			{
+				title: 'Edit',field: 'editaction', align:'center',
+				formatter: function() {
+					return '<a href="javascript:" id="editProject" class="like"><p  class="fas fa-edit" data-toggle="modal" data-target="#exampleModalCenter"></p></a>'
+				},
+				events: {
+					'click #editProject': function (e, value, row) {
+					app.editProject(row);
+					
+				}
+				}	
+				
+							
+			},
+			
+			{
+				title: 'Project Details',field: 'detailsbutton', align:'center',
+				formatter: function () {
+					return '<a href="javascript:" id="projectdetails" class="like"><p  class="fas fa-eye" data-toggle="modal" data-target="#exampleModalCenter"></p></a>'
+					
+				},
+				events: {
+					'click #projectdetails': function (e, value, row) {
+					app.projectdetails(row);
+					
+				}
+				}				
+			},
+			
+			{
+				title: 'Delete',field: 'deleteaction', align:'center',
+				formatter: function () {
+					return '<a href="javascript:" id="deleteproject" class="like"><p  class="fas fa-trash-alt" data-toggle="modal" data-target="#exampleModalCenter"></p></a>'
+				},
+				events: {
+					'click #deleteproject': function (e, value, row) {
+					app.deleteProject(row);
+					
+				}
+				}				
+			},
+			],
+			projectdata: [],
+			projectoptions: {
+				search: true,
+				showColumns: true
+				},
+			
+	},
+			
+	methods: {
+			editProject: function(projects){
+
+					localStorage.setItem("projectedittoken",projects.projecttoken);				
+					window.location.href = "projectedit.html";
+				
+				},
+				projectdetails: function(projects){
+					localStorage.setItem("projectedittoken",projects.projecttoken);
+					
+					window.location.href = "projectdetail.html";
+				
+			},
+		
+		
+			
+		
+			deleteProject: function(projects){
+				if(confirm("Are you sure want to delete this project details?"))
+				{						
+					
+					let formData = new FormData();  
+				
+					formData.append('projectedittoken', projects.projecttoken)
+					
+			
+			
+					axios({
+						method: 'post',
+						url: 'deletecontactprocess',
+						url:'http://localhost/hrportal/controller/deleteprojectprocess.php',
+						data: formData,
+						config: { headers: {'Content-Type': 'multipart/form-data' }}
+					})
+					.then(function (response) {
+						if(!response.data.error)
+						{
+							alert(response.data.message);
+							app.getProject();
+						}
+						else
+						{
+						alert(response.data.message);
+						}
+					})
+					.catch(function (response) {
+					});
+				}
+
+			},
+		
+			
+			
+	
+		
+			
+		
+			getProject: function(){
+		
+				let formData = new FormData();  
+			
+				axios({
+					method: 'post',
+					url:'http://localhost/hrportal/controller/getmanageproject.php',
+					data: formData,
+					config: { headers: {'Content-Type': 'multipart/form-data' }}
+				})
+				.then(function (response) {      
+					
+					
+					app.projectdata=response.data.projectdetails;		
+					 
+				
+
+				})
+				.catch(function (response) {
+				});
+				
+			},	
+
+			
+	
+			
+	},
+
+ beforeMount(){
+
+    this.getProject();
+  
+ },		
+
+})
+document.addEventListener('deviceready', app.init);		
+</script>	
+</body>
+</html>
